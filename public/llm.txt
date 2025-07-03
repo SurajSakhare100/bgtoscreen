@@ -1,0 +1,4 @@
+# LLM Info for bgtoscreen
+site: https://bgtoscreen.vercel.app/
+usage: public, non-commercial, research, and AI indexing allowed
+contact: admin@bgtoscreen.vercel.app 

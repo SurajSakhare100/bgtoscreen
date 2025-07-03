@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bgtoscreen.vercel.app/sitemap.xml 

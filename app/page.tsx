@@ -8,6 +8,7 @@ import { ImagePreview } from "@/components/image-preview"
 import { Card } from "@/components/ui/card"
 import { backgrounds } from "@/lib/backgrounds"
 import { CropModal } from "@/components/crop-modal"
+import SEO from '@/components/seo'
 
 export interface ImageSettings {
   padding: number
@@ -64,45 +65,53 @@ export default function ImageEditor() {
   }, [])
 
   return (
-    <div className="h-screen bg-gray-50 p-2 md:p-4">
-      <div className="h-full max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 md:gap-4 h-full">
-          {/* Left Panel - Upload & Backgrounds */}
-          <div className="lg:col-span-3 space-y-2 md:space-y-4 overflow-y-auto">
-            <Card className="p-3 md:p-4">
-              <h2 className="text-base md:text-lg font-semibold mb-3">Upload Image</h2>
-              <ImageUpload onImageUpload={handleImageUpload} />
-            </Card>
+    <>
+      <SEO
+        title="Edit Your Backgrounds | BG to Screen"
+        description="Upload, crop, and customize backgrounds for your screens with ease."
+        image="/placeholder-logo.png"
+        url="https://yourdomain.com/"
+      />
+      <div className="h-screen bg-gray-50 p-2 md:p-4">
+        <div className="h-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 md:gap-4 h-full">
+            {/* Left Panel - Upload & Backgrounds */}
+            <div className="lg:col-span-3 space-y-2 md:space-y-4 overflow-y-auto">
+              <Card className="p-3 md:p-4">
+                <h2 className="text-base md:text-lg font-semibold mb-3">Upload Image</h2>
+                <ImageUpload onImageUpload={handleImageUpload} />
+              </Card>
 
-            <Card className="p-3 md:p-4 flex-1 overflow-hidden">
-              <h2 className="text-base md:text-lg font-semibold mb-3">Background</h2>
-              <BackgroundSelector selectedBackground={selectedBackground} onBackgroundSelect={handleBackgroundSelect} />
-            </Card>
-          </div>
+              <Card className="p-3 md:p-4 flex-1 overflow-hidden">
+                <h2 className="text-base md:text-lg font-semibold mb-3">Background</h2>
+                <BackgroundSelector selectedBackground={selectedBackground} onBackgroundSelect={handleBackgroundSelect} />
+              </Card>
+            </div>
 
-          {/* Center Panel - Preview */}
-          <div className="lg:col-span-6 order-first lg:order-none">
-            <Card className="p-3 md:p-4 h-full flex flex-col">
-              <h2 className="text-base md:text-lg font-semibold mb-3 flex-shrink-0">Preview</h2>
-              <div className="flex-1 min-h-0">
-                <ImagePreview image={uploadedImage} settings={settings} />
-              </div>
-            </Card>
-          </div>
+            {/* Center Panel - Preview */}
+            <div className="lg:col-span-6 order-first lg:order-none">
+              <Card className="p-3 md:p-4 h-full flex flex-col">
+                <h2 className="text-base md:text-lg font-semibold mb-3 flex-shrink-0">Preview</h2>
+                <div className="flex-1 min-h-0">
+                  <ImagePreview image={uploadedImage} settings={settings} />
+                </div>
+              </Card>
+            </div>
 
-          {/* Right Panel - Controls */}
-          <div className="lg:col-span-3 overflow-y-auto">
-            <Card className="p-3 md:p-4 h-full">
-              <h2 className="text-base md:text-lg font-semibold mb-3">Controls</h2>
-              <ImageControls settings={settings} onSettingsChange={handleSettingsChange} hasImage={!!uploadedImage} />
-            </Card>
+            {/* Right Panel - Controls */}
+            <div className="lg:col-span-3 overflow-y-auto">
+              <Card className="p-3 md:p-4 h-full">
+                <h2 className="text-base md:text-lg font-semibold mb-3">Controls</h2>
+                <ImageControls settings={settings} onSettingsChange={handleSettingsChange} hasImage={!!uploadedImage} />
+              </Card>
+            </div>
           </div>
         </div>
-      </div>
 
-      {showCropModal && originalImage && (
-        <CropModal image={originalImage} onCropComplete={handleCropComplete} onCancel={handleCropCancel} />
-      )}
-    </div>
+        {showCropModal && originalImage && (
+          <CropModal image={originalImage} onCropComplete={handleCropComplete} onCancel={handleCropCancel} />
+        )}
+      </div>
+    </>
   )
 }

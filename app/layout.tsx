@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import SEO from '../components/seo'
+import { Analytics } from '@vercel/analytics/react';
+// ...existing imports
 
 export const metadata: Metadata = {
   title: 'v0 App',
@@ -14,7 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <SEO />
+        <script defer src="https://vercel.com/analytics/script.js"></script>
+      </head>
+      <body>{children}
+        <Analytics/>
+      </body>
     </html>
   )
 }
